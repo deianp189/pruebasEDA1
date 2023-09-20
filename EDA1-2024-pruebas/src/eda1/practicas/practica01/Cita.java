@@ -18,7 +18,7 @@ public class Cita {
     public Cita() {
         //Inicializamos los atributos this.citaId (cada vez que se crea una cita incrementamos en 1 el atributo estático numCitas, empezando por 1) y this.valoraciones
         //2 líneas
-    	this.citaId = 1 + numCitas++;
+    	this.citaId = ++numCitas;
     	this.valoraciones = new ArrayList<String>();
     	
     }
@@ -49,8 +49,9 @@ public class Cita {
         //Cuidado con las mayúsculas y minúsculas, así como los espacios iniciales y finales de la cadena
         //1 for() tipo forEach ¿+ break?
         if(palabra==null || palabra.isEmpty()) return false;
-        for (String string : valoraciones) {
-			if(string.toLowerCase().trim().contains(palabra.toLowerCase().trim())) {
+        String palabraTransormada = palabra.trim().toLowerCase();
+        for (String s : valoraciones) {
+			if(s.contains(palabraTransormada)) {
 				return true;
 			}
 			
@@ -68,7 +69,7 @@ public class Cita {
         //Para temas de formato vamos a hacer uso de los métodos de la clase Format que encontraréis en la carpeta auxiliar; 
         //Escribe correctamente la siguiente línea
         return "Cita #" + Format.formatInt(this.citaId, 4) + " -> " + ( this.valoraciones == null || this.valoraciones.isEmpty()
-        		? "<sin texto>" : this.valoraciones);
+        		? "<sin texto>" : this.valoraciones.toString());
     }
 
     @Override
