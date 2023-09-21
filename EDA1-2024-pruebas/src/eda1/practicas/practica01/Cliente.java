@@ -24,14 +24,20 @@ public class Cliente {
         //Devolvemos false si la mascota ya existe en this.mascotas; en caso contrario, se añade y fin (true)
         //Hacemos uso de indexOf()
         //4 líneas
-        //...
+    	//if(this.mascotas.contains(new Mascota(nombre, null)) return false;
+    	if (this.mascotas.indexOf(new Mascota(nombre.trim().toLowerCase(), especie.trim().toLowerCase())) != -1) return false;
+    	this.mascotas.add(new Mascota(nombre.trim(), especie.toLowerCase()));
+    	return true;
     }
 
     public Cita addCita(String nombre, String especie) {
         //Se añade una nueva cita (devolviendo su referencia)
         //Si este cliente no tiene la mascota con clave (nombre, especie) --> se devuelve null
         //2 líneas
-        //...
+    	
+    	 int index = this.mascotas.indexOf(new Mascota(nombre.trim().toLowerCase(), especie.trim().toLowerCase()));
+    	 return (index != -1) ? this.mascotas.get(index).addCita() : null;
+        
     }
 
     public void clear() {

@@ -29,7 +29,7 @@ public class Cita {
 	// 2 líneas
 	public Cita(int citaId) {
 		this.citaId = citaId;
-		this.valoraciones = null;
+		this.valoraciones = new ArrayList<String>();
 	}
 
 	public int getCitaId() {
