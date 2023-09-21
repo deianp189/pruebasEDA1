@@ -16,11 +16,7 @@ public class Cliente {
     }
 
     public Cliente(String nombre) {
-        //Atención al formato del identificador de Cliente (this.nombre). Observa el test...
-    	//El nombre del cliente será el identificador (con un formato de 5 dígitos) + .- + el valor del parámetro nombre (id.- nombre)
-        //Si el parámetro nombre es nulo o está vacío, el cliente se llamará "id.- sinNombre"
-    	//completa la siguiente línea
-        this.nombre = Format... + ".- " + ( ?  :);
+        this.nombre = Format.formatInt(++numClientes, 5) + ".- " + (nombre==null || nombre.isEmpty() ? "sinNombre" : nombre);
         this.mascotas = new ArrayList<>();
     }
 
@@ -89,6 +85,8 @@ public class Cliente {
         //...
         return null;
     }
+    
+    //"00001.- pepe -> []"
 
     @Override
     public String toString() {
