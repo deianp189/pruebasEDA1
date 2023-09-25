@@ -41,8 +41,9 @@ public class Cliente {
     }
 
     public void clear() {
-        //1 for() 
-        //...
+        for (Mascota mascota : mascotas) {
+			mascota.clear();
+		}
         this.mascotas.clear();
     }
 
@@ -56,7 +57,13 @@ public class Cliente {
         ArrayList<Integer> aux;
         //2 for() anidados tipo forEach
         //En el primer for() se itera sobre las mascotas y, para cada mascota, se itera sobre las citas
-        //...
+        for (Mascota m : this.mascotas) {
+			aux = new ArrayList<Integer>();
+			for (Cita c : m) {
+				aux.add(c.getCitaId());
+			}
+			result.add(aux);
+		}
         return result;
     }
 
@@ -66,15 +73,33 @@ public class Cliente {
         ArrayList<Integer> aux;
         //2 for() anidados tipo forEach
         //Muy similar al anterior, solo que en este caso queremos únicamente las citas que incluyan entre sus valoraciones la palabra que se indica como parámetro de entrada
-        //...
+        String palabraTransformada = palabra.trim().toLowerCase();
+        for (Mascota m : this.mascotas) {
+			aux = new ArrayList<Integer>();
+			for (Cita c : m) {
+				if(c.contienePalabra(palabraTransformada))
+				aux.add(c.getCitaId());
+			}
+			result.add(aux);
+		}
         return result;
     }
 
     public ArrayList<Integer> getCitasId(String nombre, String especie){
         //Si la mascota con clave (nombre, especie) no existe, se devuelve null;
         ArrayList<Integer> result = new ArrayList<>();
-        //1 for() tipo forEach
-        //...
+        
+        if (nombre == null && especie == null) {
+            return null;
+        }
+        int pos = mascotas.indexOf(new Mascota(nombre, especie));
+        if(pos==-1) return null;
+       //1 for() tipo forEach
+        for (Cita c : this.mascotas.get(pos)) {
+			result.add(c.getCitaId());
+		}
+        
+        
         return result;
     }
 
@@ -92,19 +117,22 @@ public class Cliente {
         return null;
     }
     
-    //"00001.- pepe -> []"
-
     @Override
     public String toString() {
         return this.nombre + " -> " + this.mascotas.toString();
     }
+    
+//    00001.- pepe -> {kike <loro> [2 citas]: [Cita #0001 -> [primera visita de kike loro], Cita #0002 -> [segunda visita de kike loro]], " +
+//		   "kike <perro> [2 citas]: [Cita #0003 -> [primera visita de kike perro], Cita #0004 -> [segunda visita de kike perro]], " +
+//		   "pepa <gato> [2 citas]: [Cita #0005 -> [primera visita de pepa gato], Cita #0006 -> [segunda visita de pepa gato]]}
 
     public String toStringExtended() {
         String result = this.nombre + " -> {";
         //1 for() tipo forEach
         //Hacemos uso del método toStringExtended() de mascota
         //Cuidado con la última coma...
-        //...
+        
+        
         return result + "}";
     }
 

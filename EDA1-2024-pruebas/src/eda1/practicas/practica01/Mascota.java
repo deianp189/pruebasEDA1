@@ -45,8 +45,9 @@ public class Mascota implements Comparable<Mascota>, Iterable<Cita> {
 	// 1 for() tipo forEach
 	public void clear() {
 		for (Cita cita : historial) {
-			this.historial.clear();
+			cita.clear();
 		}
+		this.historial.clear();
 	}
 
 	public int size() {
