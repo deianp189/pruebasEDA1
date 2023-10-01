@@ -22,11 +22,9 @@ public class Mascota implements Comparable<Mascota>, Iterable<Cita> {
 	// Creamos una nueva cita y, por comodidad, devolvemos su referencia para poder
 	// añadir valoraciones
 	// 3 líneas
-	public Cita addCita() {
-		Cita nuevaCita = new Cita();
-		this.historial.add(nuevaCita);
-		return nuevaCita;
-
+	public Cita addCita() {		
+		this.historial.add(new Cita());
+		return this.historial.getLast();
 	}
 
 	// Si el parámetro citaId es menor que cero, se devuelve null

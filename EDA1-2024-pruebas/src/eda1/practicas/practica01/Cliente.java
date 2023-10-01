@@ -66,11 +66,10 @@ public class Cliente {
 		ArrayList<Integer> aux;
 
 		for (Mascota m : this.mascotas) {
-			aux = new ArrayList<Integer>();
+			result.add(aux = new ArrayList<Integer>());
 			for (Cita c : m) {
 				aux.add(c.getCitaId());
 			}
-			result.add(aux);
 		}
 		return result;
 	}
@@ -128,9 +127,6 @@ public class Cliente {
 					break;
 				}
 			}
-			if (result != null) {
-				break;
-			}
 		}
 		return result;
 	}
@@ -145,9 +141,6 @@ public class Cliente {
 					result = m;
 					break;
 				}
-			}
-			if (result != null) {
-				break;
 			}
 		}
 		return result;
